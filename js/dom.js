@@ -4,7 +4,7 @@ export function obterTextoTarefa() {
   return input.value;
 }
 
-// Função para limpar o campo do input após adicionar uma tarega
+// Função para limpar o campo do input após adicionar uma tarefa
 export function limparInput() {
   const input = document.querySelector("#input-tarefa");
   input.value = "";
@@ -14,16 +14,42 @@ export function limparInput() {
 // Função para renderizar a lista de tarefas no DOM
 export function renderizarTarefas(tarefas) {
   const lista = document.querySelector("#lista-tarefas");
+
   lista.innerHTML = "";
 
-  tarefas.forEach((tarefa) => {
+  tarefas.forEach((tarefa, index) => {
     const li = document.createElement("li");
-    li.textContent = tarefa.texto;
 
+    const span = document.createElement("span");
+    span.textContent = tarefa.texto;
+
+    // Se concluída
     if (tarefa.concluida) {
-      li.style.textDecoration = "line-through";
-      li.style.opacity = "0.6";
+      span.style.textDecoration = "line-through";
+      span.style.opacity = "0.6";
     }
+
+    // Botão concluir
+    const botaoConcluir = document.createElement("button");
+    botaoConcluir.textContent = "✅";
+
+    botaoConcluir.addEventListener("click", () => {
+      tarefa.concluida = !tarefa.concluida;
+      renderizarTarefas(tarefas);
+    });
+
+    // Botão excluir
+    const botaoExcluir = document.createElement("button");
+    botaoExcluir.textContent = "❌";
+
+    botaoExcluir.addEventListener("click", () => {
+      tarefas.splice(index, 1);
+      renderizarTarefas(tarefas);
+    });
+
+    li.appendChild(span);
+    li.appendChild(botaoConcluir);
+    li.appendChild(botaoExcluir);
 
     lista.appendChild(li);
   });
@@ -43,6 +69,7 @@ export function exibirMensagem(mensagem, tipo) {
   }
 
   areaMensagem.textContent = mensagem;
+  areaMensagem.style.display = "block";
 
   if (tipo === "erro") {
     areaMensagem.style.color = "red";

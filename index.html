@@ -3,41 +3,88 @@
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="/css/style.css" />
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="/js/login.js" defer></script>
     <script src="/js/main.js" defer type="module"></script>
+
     <title>TaskDev</title>
   </head>
+
   <body>
-    <div class="app">
+    <section class="login-container" id="login-container">
+      <div class="login-card">
+        <h1 id="login-titulo">TaskDev</h1>
+
+        <p id="login-subtitulo">Entre para acessar suas tarefas</p>
+
+        <form id="form-login">
+          <input
+            type="text"
+            id="usuario"
+            placeholder="Digite seu usuário"
+            required
+          />
+
+          <input type="email" id="email" placeholder="Digite seu email" />
+
+          <input
+            type="password"
+            id="senha"
+            placeholder="Digite sua senha"
+            required
+          />
+
+          <button type="submit">Entrar</button>
+        </form>
+
+        <p id="login-mensagem"></p>
+
+        <div class="login-toggle">
+          <span id="toggle-texto"> Não possui conta? </span>
+
+          <button type="button" id="toggle-botao">Criar conta</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- APP -->
+    <div class="app" id="app">
       <header class="app-header">
-        <h1>TaskDev</h1>
+        <div class="header-top">
+          <h1>TaskDev</h1>
+
+          <button id="btn-sair">Sair</button>
+        </div>
       </header>
 
       <main class="app-content">
         <form id="form-tarefa" aria-label="Adicionar nova tarefa">
-      <input
-        type="text"
-        id="input-tarefa"
-        placeholder="Digite uma tarefa..."
-        aria-label="Descrição da tarefa"
-      />
-      <button type="submit">Adicionar</button>
-    </form>
+          <input
+            type="text"
+            id="input-tarefa"
+            placeholder="Digite uma tarefa..."
+            aria-label="Descrição da tarefa"
+          />
 
-    <p id="mensagem" role="status" aria-live="polite"></p>
+          <button type="submit">Adicionar</button>
+        </form>
 
-    <ul id="lista-tarefas" aria-label="Lista de tarefas"></ul>
+        <p id="mensagem" role="status" aria-live="polite"></p>
 
-    <p id="dica"></p>
+        <ul id="lista-tarefas" aria-label="Lista de tarefas"></ul>
+
+        <p id="dica"></p>
       </main>
     </div>
-
-    
   </body>
 </html>
